@@ -18,18 +18,18 @@ import dagger.hilt.android.AndroidEntryPoint
 class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
-    private var name: String? =null
-    private var country: String? =null
+    private var name: String =""
+    private var country: String =""
     private var latitude: Double? =null
     private var longitude: Double? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_map)
-        name = intent.getStringExtra("name")
-        country = intent.getStringExtra("country")
-        latitude = intent.getDoubleExtra("lat", 1.0)
-        longitude = intent.getDoubleExtra("lon", 1.0)
+        name = intent.getStringExtra("name")?:""
+        country = intent.getStringExtra("country")?:""
+        latitude = intent.getDoubleExtra("lat", 33.733334)
+        longitude = intent.getDoubleExtra("lon", 44.416668)
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
