@@ -1,5 +1,6 @@
 package com.samy.klivvrandroidchallenge.presentation.contryslist
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
@@ -7,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.samy.klivvrandroidchallenge.data.model.City
 import com.samy.klivvrandroidchallenge.databinding.ActivityMainBinding
+import com.samy.klivvrandroidchallenge.presentation.map.MapActivity
 import com.samy.klivvrandroidchallenge.util.Utils.myLog
 import com.samy.mostafasamy.utils.DataState
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,6 +35,17 @@ class MainActivity : AppCompatActivity() {
 
     private fun setup() {
         binding.rv.adapter = adapter
+        binding.viewModel = cityViewModel
+        binding.lifecycleOwner = this
+
+        adapter.setOnItemClickListener {
+            val intent = Intent(this, MapActivity::class.java)
+            intent.putExtra("name", it.name)
+            intent.putExtra("country", it.country)
+            intent.putExtra("lat", it.coord.lat)
+            intent.putExtra("lon", it.coord.lon)
+            startActivity(intent)
+        }
     }
 
 
@@ -67,7 +80,7 @@ class MainActivity : AppCompatActivity() {
                     try {
                         showProgress(false)
                         handleResult(it.response as List<City>)
-                    }catch (e:Exception){
+                    } catch (e: Exception) {
                         myLog("e: ${e.message}")
                     }
                 }
@@ -78,16 +91,16 @@ class MainActivity : AppCompatActivity() {
 
     private suspend fun searchObserver() {
         cityViewModel.text.collect { text ->
-            cityViewModel.searchCities(text)
+            val t = text.replaceFirstChar {
+                if (it.isLowerCase()) it.titlecase() else it.toString()
+            }
+            cityViewModel.searchCities(t)
         }
     }
 
     fun handleResult(response: List<City>) {
-        if (response.isNotEmpty()) {
-            adapter.submitList(response)
-            myLog("name ${response[response.size-1].name}")
-            myLog("size ${response.size}")
-        }
+        adapter.submitList(response)
+        myLog("MainAc size ${response.size}")
     }
 
     private fun showProgress(b: Boolean) {

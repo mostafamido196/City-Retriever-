@@ -89,6 +89,9 @@ dependencies {
     // paging
     implementation("androidx.paging:paging-runtime:3.1.0")
 
+    // map
+    implementation ("com.google.android.gms:play-services-maps:18.0.2")
+
 
 }
 //hilt

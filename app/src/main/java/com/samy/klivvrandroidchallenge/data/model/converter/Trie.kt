@@ -1,17 +1,20 @@
 package com.samy.klivvrandroidchallenge.data.model.converter
 
 import com.samy.klivvrandroidchallenge.data.model.City
+import com.samy.klivvrandroidchallenge.util.Utils.myLog
+
+
 
 // Trie class is initialized as a TrieNode.
 class Trie {
     private val root = TrieNode()
 
-    fun insert(prefix: String, Country: City) {
+    fun insert(prefix: String, country: City) {
         var node = root
         for (char in prefix) {
             node = node.children.getOrPut(char) { TrieNode() }
-            node.cities.add(Country)
         }
+        node.cities.add(country)
     }
 
     fun search(prefix: String): List<City> {
@@ -30,6 +33,5 @@ class Trie {
         }
         return result
     }
-
 
 }

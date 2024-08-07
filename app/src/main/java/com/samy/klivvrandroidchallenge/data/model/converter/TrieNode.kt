@@ -4,6 +4,7 @@ import com.samy.klivvrandroidchallenge.data.model.City
 
 // Example of Trie node for efficient prefix searching
 class TrieNode {
-    val children: MutableMap<Char, TrieNode> = mutableMapOf()
-    val cities: MutableList<City> = mutableListOf()
+    val children = mutableMapOf<Char, TrieNode>()
+    val cities = mutableSetOf<City>()  // Changed to a set to avoid duplicates
+
 }
