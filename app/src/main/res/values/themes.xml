@@ -1,0 +1,12 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.KlivvrAndroidchallenge"
+        parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <!-- Primary brand color. -->
+    <item name="android:forceDarkAllowed" tools:targetApi="q"> false </item>
+    <!-- Customize your light theme here. -->
+        <item name="android:statusBarColor">#689F38</item>
+    </style>
+
+    <style name="Theme.KlivvrAndroidchallenge" parent="Base.Theme.KlivvrAndroidchallenge" />
+</resources>
