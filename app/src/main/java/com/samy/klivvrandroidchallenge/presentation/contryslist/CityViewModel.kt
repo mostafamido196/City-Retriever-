@@ -18,10 +18,10 @@ import kotlinx.coroutines.flow.onEach
 import androidx.lifecycle.viewModelScope
 import com.samy.klivvrandroidchallenge.domain.repository.CityRepository
 import com.samy.klivvrandroidchallenge.util.Utils.myLog
-import com.samy.klivvrandroidchallenge.util.Utils.myTry
 import com.samy.mostafasamy.utils.Constants
 import com.samy.mostafasamy.utils.DataState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
@@ -45,7 +45,7 @@ class CityViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             myLog("vm init start")
             try {
-                cityRepository.loadCitiesFromJson(Constants.FilesName.MainFile)
+                cityRepository.loadCitiesFromJson(Constants.FilesName.TestFile)
                 searchCities("") // To emit all cities after loading
             }catch (e :Exception){
                 myLog("e: $e")

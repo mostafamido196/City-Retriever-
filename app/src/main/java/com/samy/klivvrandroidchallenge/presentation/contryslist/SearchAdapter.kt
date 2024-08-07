@@ -40,7 +40,7 @@ class SearchAdapter @Inject constructor() :
 
         fun bind(data: City) {
 
-            binding.tile.text = "${data.name}, ${data._id}"
+            binding.tile.text = "${data.name},${data.country}: ${data._id}"
             binding.subtitle.text = "Lat: ${data.coord.lat}, Lon: ${data.coord.lon}"
 
 

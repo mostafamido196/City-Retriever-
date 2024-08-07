@@ -20,7 +20,10 @@
             android:value="AIzaSyDbGbf9A8yzr_rN0dHdZf_JvmzDtw6M3hc" />
         <activity
             android:name=".presentation.map.MapActivity"
-            android:exported="false" />
+            android:exported="true" >
+
+
+        </activity>
         <activity
             android:name=".presentation.contryslist.MainActivity"
             android:exported="true">
@@ -29,7 +32,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
+            </activity>
     </application>
 
 </manifest>
