@@ -37,6 +37,7 @@ class CityViewModel @Inject constructor(
     private val _cities = MutableStateFlow<DataState>(DataState.Idle)
     val cities: StateFlow<DataState> get() = _cities
 
+
     private val _text = MutableStateFlow("")// ui element
     val text: MutableStateFlow<String> get() = _text
 
