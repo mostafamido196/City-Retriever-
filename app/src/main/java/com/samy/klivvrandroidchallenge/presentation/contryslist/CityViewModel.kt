@@ -45,7 +45,7 @@ class CityViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             myLog("vm init start")
             try {
-                cityRepository.loadCitiesFromJson(Constants.FilesName.TestFile)
+                cityRepository.loadCitiesFromJson(Constants.FilesName.MainFile)
                 searchCities("") // To emit all cities after loading
             }catch (e :Exception){
                 myLog("e: $e")
@@ -71,4 +71,5 @@ class CityViewModel @Inject constructor(
         }
 
     }
+
 }

@@ -6,13 +6,19 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.samy.klivvrandroidchallenge.data.model.City
 import com.samy.klivvrandroidchallenge.databinding.ActivityMainBinding
 import com.samy.klivvrandroidchallenge.presentation.map.MapActivity
 import com.samy.klivvrandroidchallenge.util.Utils.myLog
 import com.samy.mostafasamy.utils.DataState
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -39,12 +45,18 @@ class MainActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
 
         adapter.setOnItemClickListener {
-            val intent = Intent(this, MapActivity::class.java)
-            intent.putExtra("name", it.name)
-            intent.putExtra("country", it.country)
-            intent.putExtra("lat", it.coord.lat)
-            intent.putExtra("lon", it.coord.lon)
-            startActivity(intent)
+            myLog("setOnItemClickListener city: ${it}")
+            try {
+                val intent = Intent(this, MapActivity::class.java).apply {
+                    putExtra("name", it.name)
+                    putExtra("country", it.country)
+                    putExtra("lat", it.coord.lat)
+                    putExtra("lon", it.coord.lon)
+                }
+                startActivity(intent)
+            } catch (e: Exception) {
+                myLog("e: $e")
+            }
         }
     }
 

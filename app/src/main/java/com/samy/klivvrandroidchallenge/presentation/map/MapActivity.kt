@@ -12,6 +12,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.samy.klivvrandroidchallenge.util.Utils.myLog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -26,11 +27,16 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_map)
-        name = intent.getStringExtra("name")?:""
-        country = intent.getStringExtra("country")?:""
-        latitude = intent.getDoubleExtra("lat", 33.733334)
-        longitude = intent.getDoubleExtra("lon", 44.416668)
+        myLog("maps activity")
+        try {
+            name = intent.getStringExtra("name")?:""
+            country = intent.getStringExtra("country")?:""
+            latitude = intent.getDoubleExtra("lat", 33.733334)
+            longitude = intent.getDoubleExtra("lon", 44.416668)
 
+        }catch (e:Exception){
+            myLog("e: $e")
+        }
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment

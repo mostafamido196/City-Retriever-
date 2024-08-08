@@ -6,7 +6,6 @@ import androidx.paging.PagingConfig
 import com.google.gson.stream.JsonReader
 import com.samy.klivvrandroidchallenge.data.model.City
 import com.samy.klivvrandroidchallenge.data.model.converter.Trie
-import com.samy.klivvrandroidchallenge.data.model.paging.CityPagingSource
 import com.samy.klivvrandroidchallenge.domain.repository.CityRepository
 import com.samy.klivvrandroidchallenge.util.Utils.myLog
 import kotlinx.coroutines.flow.Flow
@@ -63,7 +62,7 @@ class CityRepositoryImpl @Inject constructor(
                     }
                 }
             }
-            trie.insert(name, City(country, name, id, City.Coord(lat, lon)))
+            trie.insert(City(country, name, id, City.Coord(lat, lon)))
             jsonReader.endObject()
         }
         jsonReader.endArray()
